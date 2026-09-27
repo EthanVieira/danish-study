@@ -10,8 +10,8 @@ A literal, sequential, checkbox-driven guide for learning Danish entirely by sel
 | [01-A1.md](01-A1.md) | A1 (Breakthrough), ~130 hours, 14 weeks | Done |
 | [02-A2.md](02-A2.md) | A2 (Waystage), ~200 hours, 20 weeks | Done |
 | [03-B1.md](03-B1.md) | B1 (Threshold), ~480 hours, 35 weeks | Done |
-| 04-B2.md | B2 (Vantage) | Next |
-| 05-C1.md | C1 (Effective operational proficiency) | Planned |
+| [04-B2.md](04-B2.md) | B2 (Vantage), ~560 hours, 36 weeks | Done |
+| 05-C1.md | C1 (Effective operational proficiency) | Next |
 | 06-C2.md | C2 (Mastery) | Planned |
 
 ## How to read a step
@@ -126,9 +126,9 @@ The guide assumes roughly **75 to 90 minutes a day, 6 days a week**, with one lo
 | A1 | 130 (130) | Complete Danish units 1–10, Pimsleur Danish 1, Dansk her og nu chapters 1–8, Duolingo | Children's songs and rhymes, Halfdans ABC, Bamses Billedbog, Kaj og Andrea, one very easy reader, first films with English subtitles | Written A1 exit test in [01-A1.md](01-A1.md) plus the official Danskprøve A1 sample |
 | A2 | 200 (330) | Complete Danish units 11–18, Colloquial Danish (18 units), Dansk her og nu chapters 9–12, Danish Mastery grammar videos | Short Stories in Danish for Beginners, Bostrup graded readers, DR Ligetil easy articles, Dansk i ørerne, Simple Danish Podcast, Ramasjang, first films with Danish subtitles | Prøve i Dansk 1 sample material (A2) |
 | B1 | 480 (810) | Midtvejs til dansk (Synope), Danish: An Essential Grammar (systematic pass), Dansk udtale øvebog, Matador (24 episodes), Genstart, TV Avisen, the Indfødsretsprøven learning material | Ole Lund Kirkegaard, Busters verden, Skammerens datter, six Andersen tales in the original, Tove Ditlevsen's Barndom, Rita, Bagedyst, Bonderøven, seven films with Danish subtitles | Prøve i Dansk 2 example papers and an Indfødsretsprøven past paper |
-| B2 | 500 (1310) | Danish: A Comprehensive Grammar (selected chapters), DR P1 podcasts, Medborgerskabsprøven material | Jussi Adler-Olsen, Helle Helle, Tove Ditlevsen (the rest of the trilogy), Borgen, Forbrydelsen, Badehotellet, Danish film canon with Danish subtitles | Prøve i Dansk 3 example papers (B2) |
-| C1 | 550 (1860) | Academic and journalistic Danish, Weekendavisen, Information | Karen Blixen, Peter Høeg, Kim Leine, Naja Marie Aidt, Olga Ravn, Herman Bang, Danish film without subtitles | Studieprøven sample test (C1) |
-| C2 | 600+ (2460+) | Literary criticism, Danish linguistics, dialect exposure | Inger Christensen, J.P. Jacobsen, Klaus Rifbjerg, Johannes V. Jensen, Kierkegaard in Danish, historical Danish, poetry | C2-level written and spoken portfolio defined in 06-C2.md |
+| B2 | 560 (1370) | Grammatikken (in Danish) then Danish: A Comprehensive Grammar, Borgen and Forbrydelsen, Genstart daily plus P1 programmes, Debatten, Zetland and a newspaper, Medborgerskabsprøven material, Historien om Danmark | Tove Ditlevsen's Ungdom and Gift, Kvinden i buret, Helle Helle, Rifbjerg, Scherfig, Leonora Christina Skov, Yahya Hassan, Badehotellet, Klovn, ten films with subtitles ending in week 19 | Prøve i Dansk 3 example papers and a Medborgerskabsprøven past paper |
+| C1 | 550 (1920) | Academic and journalistic Danish, Weekendavisen, Information | Karen Blixen, Peter Høeg, Kim Leine, Naja Marie Aidt, Olga Ravn, Herman Bang, Danish film without subtitles | Studieprøven sample test (C1) |
+| C2 | 600+ (2520+) | Literary criticism, Danish linguistics, dialect exposure | Inger Christensen, J.P. Jacobsen, Johannes V. Jensen, Kierkegaard in Danish, historical Danish, poetry | C2-level written and spoken portfolio defined in 06-C2.md |
 
 Hours are total study time including input. They are conservative for a learner whose first language is English and who has no prior Scandinavian language. Danish listening comprehension typically lags reading by a full level; the guide compensates with heavy audio.
 
