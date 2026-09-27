@@ -19,12 +19,12 @@ A literal, sequential, checkbox-driven guide for learning Danish entirely by sel
 Every step looks like this:
 
 ```
-- [ ] A1-042 [Study · Focused · 45 min] Complete Danish, Unit 3: listen and read.
+- [ ] A1-040 [Study · Focused · 45 min] Complete Danish, Unit 3: listen and read.
       Do: ...
       Done when: ...
 ```
 
-- **ID** (A1-042): level and sequence number. Steps are prerequisites for everything after them.
+- **ID** (A1-040): level and sequence number. Steps are prerequisites for everything after them.
 - **Type tag**:
   - `Setup`: installing, buying, registering, organising.
   - `Study`: working through a lesson with a textbook or course.
@@ -107,7 +107,7 @@ The guide assumes roughly **75 to 90 minutes a day, 6 days a week**, with one lo
 | Morning | 15 | Anki reviews (all due cards, then the new ones) |
 | Commute or chores | 30 | Pimsleur lesson or podcast or shadowing playback |
 | Evening | 30–45 | The next `Study` or `Drill` step in the guide |
-| Before bed | 10 | Duolingo, a song, or a page of a children's book |
+| Before bed | 10 | A song or a page of a children's book |
 
 ## Rules that never change
 
@@ -123,7 +123,7 @@ The guide assumes roughly **75 to 90 minutes a day, 6 days a week**, with one lo
 
 | Level | Approx. hours (cumulative) | Spine resources | Input focus | Exit verification |
 |---|---|---|---|---|
-| A1 | 130 (130) | Complete Danish units 1–10, Pimsleur Danish 1, Dansk her og nu chapters 1–8, Duolingo | Children's songs and rhymes, Halfdans ABC, Bamses Billedbog, Kaj og Andrea, one very easy reader, first films with English subtitles | Written A1 exit test in [01-A1.md](01-A1.md) plus the official Danskprøve A1 sample |
+| A1 | 130 (130) | Complete Danish units 1–10, Pimsleur Danish 1, Dansk her og nu chapters 1–8 | Children's songs and rhymes, Halfdans ABC, Bamses Billedbog, Kaj og Andrea, one very easy reader, first films with English subtitles | Written A1 exit test in [01-A1.md](01-A1.md) plus the official Danskprøve A1 sample |
 | A2 | 200 (330) | Complete Danish units 11–18, Colloquial Danish (18 units), Dansk her og nu chapters 9–12, Danish Mastery grammar videos | Short Stories in Danish for Beginners, Bostrup graded readers, DR Ligetil easy articles, Dansk i ørerne, Simple Danish Podcast, Ramasjang, first films with Danish subtitles | Prøve i Dansk 1 sample material (A2) |
 | B1 | 480 (810) | Midtvejs til dansk (Synope), Danish: An Essential Grammar (systematic pass), Dansk udtale øvebog, Matador (24 episodes), Genstart, TV Avisen, the Indfødsretsprøven learning material | Ole Lund Kirkegaard, Busters verden, Skammerens datter, six Andersen tales in the original, Tove Ditlevsen's Barndom, Rita, Bagedyst, Bonderøven, seven films with Danish subtitles | Prøve i Dansk 2 example papers and an Indfødsretsprøven past paper |
 | B2 | 560 (1370) | Grammatikken (in Danish) then Danish: A Comprehensive Grammar, Borgen and Forbrydelsen, Genstart daily plus P1 programmes, Debatten, Zetland and a newspaper, Medborgerskabsprøven material, Historien om Danmark | Tove Ditlevsen's Ungdom and Gift, Kvinden i buret, Helle Helle, Rifbjerg, Scherfig, Leonora Christina Skov, Yahya Hassan, Badehotellet, Klovn, ten films with subtitles ending in week 19 | Prøve i Dansk 3 example papers and a Medborgerskabsprøven past paper |
