@@ -380,17 +380,19 @@ details.block>summary .bp{font-family:var(--mono);font-size:12px;color:var(--ink
 (function(){
 'use strict';
 const LEVELS=[
-  {code:'A1',name:'Breakthrough',file:'guide/01-A1.md',hours:130},
-  {code:'A2',name:'Waystage',file:'guide/02-A2.md',hours:200},
-  {code:'B1',name:'Threshold',file:'guide/03-B1.md',hours:480},
-  {code:'B2',name:'Vantage',file:'guide/04-B2.md',hours:560},
-  {code:'C1',name:'Effective proficiency',file:'guide/05-C1.md',hours:640},
-  {code:'C2',name:'Mastery',file:'guide/06-C2.md',hours:630},
+  {code:'A1',name:'Breakthrough',file:'guide/01-A1.md',hours:200},
+  {code:'A2',name:'Waystage',file:'guide/02-A2.md',hours:400},
+  {code:'B1',name:'Threshold',file:'guide/03-B1.md',hours:740},
+  {code:'B2',name:'Vantage',file:'guide/04-B2.md',hours:900},
+  {code:'C1',name:'Effective proficiency',file:'guide/05-C1.md',hours:890},
+  {code:'C2',name:'Mastery',file:'guide/06-C2.md',hours:920},
 ];
 const TOTAL_HOURS=LEVELS.reduce((a,l)=>a+l.hours,0);
 const HABITS=[
   {key:'anki',label:'Anki reviews cleared',from:'A1-004'},
   {key:'speak',label:'Spoke Danish aloud',from:'A1-014'},
+  {key:'book',label:'Book lane: read from the open book',from:'A1-057a'},
+  {key:'ear',label:'Ear lane: listened on the go',from:'A1-089a'},
   {key:'dagbog',label:'Dagbog entry written',from:'A1-083'},
   {key:'voice',label:'AI voice session (3 a week)',from:'A2-030'},
   {key:'ligetil',label:'DR Ligetil article (3 a week)',from:'A2-031'},
@@ -429,7 +431,7 @@ function parseMinutes(tag){
 function parseLevel(text,lv){
   const lines=text.split(/\r?\n/);
   const out={code:lv.code,name:lv.name,hours:lv.hours,title:'',intro:[],blocks:[],steps:[],appendices:[]};
-  const stepRe=/^- \[[ xX]\] \*\*([A-C][12]-\d{3})\*\*\s*(.*)$/;
+  const stepRe=/^- \[[ xX]\] \*\*([A-C][12]-\d{3}[a-z]?)\*\*\s*(.*)$/;
   let mode='intro',block=null,week=null,step=null,app=null;
   for(let i=0;i<lines.length;i++){
     const line=lines[i]; let m;
