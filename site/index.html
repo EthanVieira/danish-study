@@ -259,7 +259,7 @@ details.block>summary .bp{font-family:var(--mono);font-size:12px;color:var(--ink
     <nav id="nav" aria-label="Sections">
       <button data-view="today" class="on">Today <span class="k">1</span></button>
       <button data-view="steps">Steps <span class="k">2</span></button>
-      <button data-view="habits">Habits <span class="k">3</span></button>
+      <button data-view="habits">Dailies <span class="k">3</span></button>
       <button data-view="reference">Reference <span class="k">4</span></button>
       <button data-view="correct">Correct <span class="k">5</span></button>
       <button data-view="settings">Settings <span class="k">6</span></button>
@@ -280,7 +280,7 @@ details.block>summary .bp{font-family:var(--mono);font-size:12px;color:var(--ink
           </div>
           <div class="card">
             <div class="eyebrow">Study minutes logged per week</div>
-            <p class="sub" style="margin:4px 0 10px;font-size:13px">Minutes from steps you ticked, by the week you ticked them. Habits are not included.</p>
+            <p class="sub" style="margin:4px 0 10px;font-size:13px">Minutes from steps you ticked, by the week you ticked them. The dailies are not included.</p>
             <div class="chart" id="weekchart"></div>
           </div>
         </div>
@@ -296,7 +296,7 @@ details.block>summary .bp{font-family:var(--mono);font-size:12px;color:var(--ink
             <div class="stats" id="allstats" style="margin-top:16px"></div>
           </div>
           <div class="card">
-            <div class="eyebrow">Today's habits</div>
+            <div class="eyebrow">Today: dailies first, then the step</div>
             <div class="habits" id="habits-today" style="margin-top:10px"></div>
           </div>
         </div>
@@ -315,7 +315,7 @@ details.block>summary .bp{font-family:var(--mono);font-size:12px;color:var(--ink
         <input type="search" id="q" placeholder="Search steps (e.g. Pimsleur, stød, Kim Larsen)">
         <select id="typefilter" aria-label="Filter by type">
           <option value="">All types</option>
-          <option>Setup</option><option>Study</option><option>Drill</option><option>Input</option><option>Produce</option><option>Culture</option><option>Rhythm</option><option>Check</option><option>Habit</option>
+          <option>Setup</option><option>Study</option><option>Drill</option><option>Input</option><option>Produce</option><option>Culture</option><option>Check</option>
         </select>
         <button class="btn sm" id="jump">Jump to current</button>
       </div>
@@ -323,8 +323,8 @@ details.block>summary .bp{font-family:var(--mono);font-size:12px;color:var(--ink
     </section>
 
     <section class="view" id="view-habits" hidden>
-      <h2 class="vt">Habits</h2>
-      <p class="sub">The routines the guide says never to skip. Tick them on the Today page; this view shows the last twelve weeks. A habit appears once the guide has started it.</p>
+      <h2 class="vt">Dailies</h2>
+      <p class="sub">The only two things you do every day outside the numbered steps: Anki and the dagbog. Do them first, then the current step. Tick them on the Today page; this view shows the last twelve weeks. Each appears once the guide has started it.</p>
       <div class="card" id="habitgrid"></div>
     </section>
 
@@ -375,19 +375,14 @@ const LEVELS=[
   {code:'A1',name:'Breakthrough',file:'guide/01-A1.md',hours:200},
   {code:'A2',name:'Waystage',file:'guide/02-A2.md',hours:400},
   {code:'B1',name:'Threshold',file:'guide/03-B1.md',hours:740},
-  {code:'B2',name:'Vantage',file:'guide/04-B2.md',hours:900},
-  {code:'C1',name:'Effective proficiency',file:'guide/05-C1.md',hours:890},
-  {code:'C2',name:'Mastery',file:'guide/06-C2.md',hours:920},
+  {code:'B2',name:'Vantage',file:'guide/04-B2.md',hours:960},
+  {code:'C1',name:'Effective proficiency',file:'guide/05-C1.md',hours:955},
+  {code:'C2',name:'Mastery',file:'guide/06-C2.md',hours:910},
 ];
 const TOTAL_HOURS=LEVELS.reduce((a,l)=>a+l.hours,0);
 const HABITS=[
-  {key:'anki',label:'Anki reviews cleared',from:'A1-004'},
-  {key:'speak',label:'Spoke Danish aloud',from:'A1-014'},
-  {key:'book',label:'Book lane: read from the open book',from:'A1-057a'},
-  {key:'ear',label:'Ear lane: listened on the go',from:'A1-089a'},
-  {key:'dagbog',label:'Dagbog entry written',from:'A1-083'},
-  {key:'voice',label:'AI voice session (3 a week)',from:'A2-030'},
-  {key:'ligetil',label:'DR Ligetil article (3 a week)',from:'A2-031'},
+  {key:'anki',label:'Anki reviews cleared',from:'A1-0004'},
+  {key:'dagbog',label:'Dagbog entry written',from:'A1-0139'},
 ];
 const DEFAULT_STATE=()=>({done:{},notes:{},checks:{},habits:{},settings:{minsPerDay:80,start:''}});
 
@@ -422,14 +417,16 @@ function parseMinutes(tag){
 }
 function parseLevel(text,lv){
   const lines=text.split(/\r?\n/);
-  const out={code:lv.code,name:lv.name,hours:lv.hours,title:'',intro:[],blocks:[],steps:[],appendices:[]};
-  const stepRe=/^- \[[ xX]\] \*\*([A-C][12]-\d{3}[a-z]?)\*\*\s*(.*)$/;
+  const out={code:lv.code,name:lv.name,hours:lv.hours,title:'',intro:[],patterns:[],blocks:[],steps:[],appendices:[]};
+  const stepRe=/^- \[[ xX]\] \*\*([A-C][12]-\d{3,4}[a-z]?)\*\*\s*(.*)$/;
   let mode='intro',block=null,week=null,step=null,app=null;
   for(let i=0;i<lines.length;i++){
     const line=lines[i]; let m;
     if(!out.title&&(m=line.match(/^# (.*)/))){out.title=m[1];continue;}
     if((m=line.match(/^## Appendix ([A-Z]):\s*(.*)/))){step=null;mode='app';app={letter:m[1],title:m[2].trim(),lines:[]};out.appendices.push(app);continue;}
     if(mode==='app'){app.lines.push(line);continue;}
+    if(/^## Patterns\b/.test(line)){step=null;mode='patterns';continue;}
+    if(mode==='patterns'&&!/^## /.test(line)){out.patterns.push(line);continue;}
     if((m=line.match(/^## (.*)/))){step=null;mode='block';block={title:m[1].trim(),intro:[],weeks:[]};out.blocks.push(block);week=null;continue;}
     if((m=line.match(/^### (.*)/))){step=null;week={title:m[1].trim(),intro:[],steps:[]};block.weeks.push(week);continue;}
     if(mode==='block'&&(m=line.match(stepRe))){
@@ -535,7 +532,7 @@ function paceMinutesPerDay(){
   return {pace:mins/daysTracked,estimated:false};
 }
 function habitActive(h,cur){
-  const ref=cur?cur.id:(allSteps.length?allSteps[allSteps.length-1].id:'A1-001');
+  const ref=cur?cur.id:(allSteps.length?allSteps[allSteps.length-1].id:'A1-0001');
   if(ref<h.from)return false;if(h.until&&ref>h.until)return false;return true;
 }
 function streak(key){
@@ -602,6 +599,7 @@ function renderToday(){
     card.append(el('h3',{html:md(cur.title,true)}));
     card.append(el('div',{class:'body',html:bodyHtml(cur)}));
     const ctx=blockContext(cur);if(ctx)card.append(el('details',{class:'note'},[el('summary',{text:'Block notes that apply to this step',style:'cursor:pointer;font-size:13px;color:var(--ink3);font-weight:600'}),el('div',{class:'body',html:ctx,style:'margin-top:8px;font-size:14px;color:var(--ink2)'})]));
+    const pat=(lv.patterns||[]).join('\n').trim();if(pat)card.append(el('details',{class:'note'},[el('summary',{text:'Patterns at this level',style:'cursor:pointer;font-size:13px;color:var(--ink3);font-weight:600'}),el('div',{class:'body',html:md(pat),style:'margin-top:8px;font-size:14px;color:var(--ink2)'})]));
     card.append(stepActions(cur,false));
     card.append(noteBox(cur));
   }else{
@@ -639,7 +637,7 @@ function renderToday(){
   // habits today
   const ht=$('#habits-today');ht.innerHTML='';const t=today();const rec=state.habits[t]||{};
   const active=HABITS.filter(h=>habitActive(h,cur));
-  if(!active.length)ht.append(el('p',{class:'empty',text:'Habits start at step A1-004.'}));
+  if(!active.length)ht.append(el('p',{class:'empty',text:'The dailies start with the Anki step in A1.'}));
   active.forEach(h=>{
     const on=!!rec[h.key];const row=el('label',{class:'habit'+(on?' done':'')});
     const cb=el('input',{type:'checkbox',id:'hab-'+h.key});cb.checked=on;
@@ -739,7 +737,7 @@ function stepRow(s,cur){
 function renderHabits(){
   const host=$('#habitgrid');host.innerHTML='';const cur=currentStep();
   const active=HABITS.filter(h=>habitActive(h,cur));
-  if(!active.length){host.append(el('p',{class:'empty',text:'Habits begin with step A1-004.'}));return;}
+  if(!active.length){host.append(el('p',{class:'empty',text:'The dailies begin with the Anki step in A1.'}));return;}
   const start=addDays(isoWeekStart(new Date()),-7*11);const t=today();
   active.forEach(h=>{
     const row=el('div',{class:'hrow'});row.append(el('div',{class:'hn',text:h.label}));
@@ -753,11 +751,12 @@ function renderHabits(){
 
 function renderReference(){
   const nav=$('#rnav');nav.innerHTML='';const items=[{k:'readme',t:'Methods and rules'}];
-  levels.filter(l=>l.loaded).forEach(l=>{items.push({k:'intro-'+l.code,t:l.code+' overview'});l.appendices.forEach(a=>items.push({k:l.code+'-'+a.letter,t:l.code+' '+a.letter+': '+a.title}));});
+  levels.filter(l=>l.loaded).forEach(l=>{items.push({k:'intro-'+l.code,t:l.code+' overview'});if((l.patterns||[]).join('').trim())items.push({k:'pat-'+l.code,t:l.code+' patterns'});l.appendices.forEach(a=>items.push({k:l.code+'-'+a.letter,t:l.code+' '+a.letter+': '+a.title}));});
   if(!items.find(i=>i.k===ui.ref))ui.ref='readme';
   items.forEach(i=>{const b=el('button',{text:i.t,onclick:()=>{ui.ref=i.k;renderReference();}});if(i.k===ui.ref)b.classList.add('on');nav.append(b);});
   const body=$('#refbody');let src='';
   if(ui.ref==='readme')src=readme.replace(/^# .*\n/,'# Methods and rules\n');
+  else if(ui.ref.startsWith('pat-')){const l=levels.find(x=>'pat-'+x.code===ui.ref);src='# '+l.code+' patterns\n'+l.patterns.join('\n');}
   else if(ui.ref.startsWith('intro-')){const l=levels.find(x=>'intro-'+x.code===ui.ref);src='# '+l.title+'\n'+l.intro.join('\n');}
   else{const [code,letter]=ui.ref.split('-');const l=levels.find(x=>x.code===code);const a=l&&l.appendices.find(x=>x.letter===letter);if(a)src='## Appendix '+a.letter+': '+a.title+'\n'+a.lines.join('\n');}
   body.innerHTML=md(src);
@@ -829,7 +828,7 @@ async function loadGuide(){
   for(const lv of LEVELS){
     const text=await fetchGuide(lv.file.replace(/^guide\//,''));
     if(text&&/^- \[ \] \*\*/m.test(text)){const p=parseLevel(text,lv);p.loaded=true;levels.push(p);}
-    else levels.push({code:lv.code,name:lv.name,hours:lv.hours,loaded:false,steps:[],blocks:[],appendices:[],intro:[]});
+    else levels.push({code:lv.code,name:lv.name,hours:lv.hours,loaded:false,steps:[],blocks:[],appendices:[],intro:[],patterns:[]});
   }
   allSteps=levels.flatMap(l=>l.steps);allSteps.forEach((s,i)=>stepIndex[s.id]=i);
 }
