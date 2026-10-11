@@ -641,7 +641,7 @@ function renderToday(){
   const fh=fluencyHours();const as=$('#allstats');as.innerHTML='';
   const doneAll=allSteps.filter(s=>isDone(s.id)).length;
   const pace2=paceMinutesPerDay();const remainAll=(TOTAL_HOURS-fh)*60;const etaAll=addDays(new Date(),Math.ceil(remainAll/pace2.pace));
-  as.append(stat(Math.round(fh/TOTAL_HOURS*100)+'%','Of the road to C2'),stat(fmtH(fh),'Of ~'+TOTAL_HOURS+' h banked'),stat(doneAll,'Steps ticked in total'),stat(etaAll.getFullYear(),'C2 at this pace'));
+  as.append(stat(Math.round(fh/TOTAL_HOURS*100)+'%','Of the road to C2'),stat(fmtH(fh*60),'Of ~'+TOTAL_HOURS+' h banked'),stat(doneAll,'Steps ticked in total'),stat(etaAll.getFullYear(),'Year you reach C2'+(pace2.estimated?' (planned pace)':' (pace of last 4 weeks)')));
   // habits today
   const ht=$('#habits-today');ht.innerHTML='';const t=today();const rec=state.habits[t]||{};
   const active=HABITS.filter(h=>habitActive(h,cur));
