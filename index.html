@@ -380,8 +380,8 @@ details.block>summary .bp{font-family:var(--mono);font-size:12px;color:var(--ink
 (function(){
 'use strict';
 const LEVELS=[
-  {code:'A1',name:'Breakthrough',file:'guide/01-A1.md',hours:200},
-  {code:'A2',name:'Waystage',file:'guide/02-A2.md',hours:400},
+  {code:'A1',name:'Breakthrough',file:'guide/01-A1.md',hours:190},
+  {code:'A2',name:'Waystage',file:'guide/02-A2.md',hours:395},
   {code:'B1',name:'Threshold',file:'guide/03-B1.md',hours:740},
   {code:'B2',name:'Vantage',file:'guide/04-B2.md',hours:960},
   {code:'C1',name:'Effective proficiency',file:'guide/05-C1.md',hours:955},
@@ -390,7 +390,7 @@ const LEVELS=[
 const TOTAL_HOURS=LEVELS.reduce((a,l)=>a+l.hours,0);
 const HABITS=[
   {key:'anki',label:'Anki reviews cleared',from:'A1-0004'},
-  {key:'dagbog',label:'Dagbog entry written',from:'A1-0139'},
+  {key:'dagbog',label:'Dagbog entry written',from:'A1-0130'},
 ];
 const DEFAULT_STATE=()=>({done:{},notes:{},checks:{},habits:{},settings:{minsPerDay:80,start:''}});
 
